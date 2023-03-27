@@ -11,6 +11,16 @@ function GuessLog({log}) {
                                 {item.map((char) => (<span key={Math.random() + char} className="cell">{char}</span>))}
                             </p>
                         )
+                    } else {
+                        return (
+                            <p className="guess">
+                                <span className="cell"></span>
+                                <span className="cell"></span>
+                                <span className="cell"></span>
+                                <span className="cell"></span>
+                                <span className="cell"></span>
+                            </p>
+                        )
                     }
                 })}
             </div>
