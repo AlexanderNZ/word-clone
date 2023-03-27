@@ -34,7 +34,7 @@ function Game() {
     }
 
     return <>
-        <GuessResults log={guessLog}/>
+        <GuessResults log={guessLog} guessAnswer={answer}/>
         <GuessInput
             userInput={guess}
             userInputMutator={setGuess}
