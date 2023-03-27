@@ -1,25 +1,23 @@
-import React, {useState} from "react";
-
-function GuessInput() {
+function GuessInput({ userInput, userInputMutator, userInputHistoryMutator }) {
     const inputStyle = {
         textTransform: 'uppercase'
     }
 
     function processInput(input) {
-        setGuess(input)
+        userInputMutator(input)
     }
 
     function finaliseInput() {
-        const capitalisedInput = guess.toUpperCase()
+        const capitalisedInput = userInput.toUpperCase()
         if (capitalisedInput.length < 5) {
             console.log('Enter exactly 5 characters')
         } else {
             console.log(capitalisedInput)
-            setGuess('')
+            userInputHistoryMutator(capitalisedInput)
+            userInputMutator('')
         }
     }
 
-    const [guess, setGuess] = useState('')
     return (
         <form className="guess-input-wrapper"
               onSubmit={(event) => {
@@ -32,7 +30,7 @@ function GuessInput() {
                 type="text"
                 style={inputStyle}
                 maxLength={5}
-                value={guess}
+                value={userInput}
                 onChange={(event) => {
                     processInput(event.target.value)
                 }}

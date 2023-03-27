@@ -1,10 +1,11 @@
 import React from "react";
 
-function GuessLog() {
+function GuessLog({ log }) {
     return <>
         <div className="guess-results">
-            <p className="guess">FIRST</p>
-            <p className="guess">GUESS</p>
+            {log.map((item) => (
+                <p>{item}</p>
+            ))}
         </div>
     </>;
 }

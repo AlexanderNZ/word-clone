@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {sample} from '../../utils';
 import {WORDS} from '../../data';
@@ -11,9 +11,26 @@ const answer = sample(WORDS);
 console.info({answer});
 
 function Game() {
+    const [guess, setGuess] = useState('')
+    const [guessLog, setGuessLog] = useState([''])
+
+    function updateUserInputHistory(nextInput) {
+        const nextGuessLog = guessLog;
+        nextGuessLog.push(nextInput);
+
+        if (guessLog.length > 6) {
+            guessLog.shift();
+        }
+        setGuessLog(nextGuessLog);
+        console.log(nextGuessLog)
+    }
     return <>
-        <GuessLog/>
-        <GuessInput/>
+        <GuessLog log={guessLog}/>
+        <GuessInput
+            userInput={guess}
+            userInputMutator={setGuess}
+            userInputHistoryMutator={updateUserInputHistory}>
+        </GuessInput>
     </>;
 }
 
