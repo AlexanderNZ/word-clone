@@ -2,7 +2,10 @@ import React from "react";
 
 function GuessLog() {
     return <>
-      Guess Log
+        <div className="guess-results">
+            <p className="guess">FIRST</p>
+            <p className="guess">GUESS</p>
+        </div>
     </>;
 }
 
