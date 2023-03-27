@@ -12,21 +12,25 @@ const answer = sample(WORDS);
 console.info({answer});
 
 function Game() {
-    const [guess, setGuess] = useState('')
+    const [guess, setGuess] = useState('');
     const [guessLog, setGuessLog] = useState([
         ['','','','',''],
         ['','','','',''],
         ['','','','',''],
         ['','','','',''],
-        ['','','','','']])
+        ['','','','','']]);
+    const [numberOfGuessesMade, setNumberOfGuessesMade] = useState(0);
 
     function updateUserInputHistory(nextInput) {
         const nextGuessLog = guessLog;
-        nextGuessLog.push(nextInput);
+        nextGuessLog.splice(numberOfGuessesMade, 0, nextInput);
         if (guessLog.length > NUM_OF_GUESSES_ALLOWED - 1) {
-            guessLog.shift();
+            guessLog.pop();
         }
         setGuessLog(nextGuessLog);
+
+        const nextNumberOfGuessesMade = numberOfGuessesMade + 1;
+        setNumberOfGuessesMade(nextNumberOfGuessesMade);
     }
 
     return <>
