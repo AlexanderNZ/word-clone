@@ -10,7 +10,7 @@ function GuessInput({ userInput, userInputMutator, userInputHistoryMutator }) {
     function finaliseInput() {
         const capitalisedInput = userInput.toUpperCase()
         if (capitalisedInput.length < 5) {
-            console.log('Enter exactly 5 characters')
+            alert('Enter exactly 5 characters')
         } else {
             console.log(capitalisedInput)
             userInputHistoryMutator(capitalisedInput)
