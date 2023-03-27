@@ -12,8 +12,7 @@ function GuessInput({ userInput, userInputMutator, userInputHistoryMutator }) {
         if (capitalisedInput.length < 5) {
             alert('Enter exactly 5 characters')
         } else {
-            console.log(capitalisedInput)
-            userInputHistoryMutator(capitalisedInput)
+            userInputHistoryMutator(capitalisedInput.split(''))
             userInputMutator('')
         }
     }
