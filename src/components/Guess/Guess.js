@@ -1,7 +1,9 @@
 import React from "react";
 import {checkGuess} from "../../game-helpers";
+import GameEndBanner from "../GameEndBanner";
+import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
 
-function Guess({ userGuess, gameAnswer }) {
+function Guess({ userGuess, gameAnswer, turnNumber }) {
     let answerMap = [
         { letter: '', status: ''},
         { letter: '', status: ''},
@@ -9,8 +11,20 @@ function Guess({ userGuess, gameAnswer }) {
         { letter: '', status: ''},
         { letter: '', status: ''}
     ];
-    if (userGuess.join('') !== '') {
-        answerMap = checkGuess(userGuess.join(''), gameAnswer)
+    const joinedGuess = userGuess.join('')
+    let banner;
+    if (joinedGuess !== '') {
+        answerMap = checkGuess(joinedGuess, gameAnswer)
+        console.log('turnNumber', turnNumber);
+        console.log('NUM_OF_GUESSES_ALLOWED', NUM_OF_GUESSES_ALLOWED);
+        console.log('diff', NUM_OF_GUESSES_ALLOWED - turnNumber -1);
+        console.log('ran out of time', NUM_OF_GUESSES_ALLOWED - turnNumber - 1 < 1);
+        if (joinedGuess === gameAnswer) {
+            banner = <GameEndBanner answer={gameAnswer} numberOfTurnsTaken={turnNumber} outcome={'happy'}/>
+        }
+        if (NUM_OF_GUESSES_ALLOWED - turnNumber - 1 < 1) {
+            banner = <GameEndBanner answer={gameAnswer} numberOfTurnsTaken={turnNumber} outcome={'sad'}/>
+        }
     }
 
     return <>
@@ -23,6 +37,7 @@ function Guess({ userGuess, gameAnswer }) {
                 </span>
             ))}
         </p>
+        {banner}
     </>;
 }
 
