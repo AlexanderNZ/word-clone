@@ -15,11 +15,7 @@ function Guess({ userGuess, gameAnswer, turnNumber }) {
     let banner;
     if (joinedGuess !== '') {
         answerMap = checkGuess(joinedGuess, gameAnswer)
-        console.log('turnNumber', turnNumber);
-        console.log('NUM_OF_GUESSES_ALLOWED', NUM_OF_GUESSES_ALLOWED);
-        console.log('diff', NUM_OF_GUESSES_ALLOWED - turnNumber -1);
-        console.log('ran out of time', NUM_OF_GUESSES_ALLOWED - turnNumber - 1 < 1);
-        if (joinedGuess === gameAnswer) {
+     if (joinedGuess === gameAnswer) {
             banner = <GameEndBanner answer={gameAnswer} numberOfTurnsTaken={turnNumber} outcome={'happy'}/>
         }
         if (NUM_OF_GUESSES_ALLOWED - turnNumber - 1 < 1) {
